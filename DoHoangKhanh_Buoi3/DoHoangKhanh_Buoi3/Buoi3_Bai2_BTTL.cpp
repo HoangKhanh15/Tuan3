@@ -44,7 +44,21 @@ void XuatDuongCheoChinh(int a[][MAX], int n) {
 	printf("\n");
 }
 
-
+void XuatDuongCheoPhu(int a[][MAX], int n) {
+	printf("Cac phan tu thuoc duong cheo song song voi duong cheo chinh:\n");
+	for (int k = 1; k < n; k++) {
+		printf("Cheo phu tren dong %d: ", k);
+		for (int i = 0, j = k; j < n; i++, j++) {
+			printf("%d ", a[i][j]);
+		}
+		printf("\n");
+		printf("Cheo phu tren cot %d: ", k);
+		for (int i = k, j = 0; i < n; i++, j++) {
+			printf("%d ", a[i][j]);
+		}
+		printf("\n");
+	}
+}
 void XuLyMenu(int Chon, int a[][MAX], int n) {
 	switch (Chon) {
 	case 1:
@@ -57,6 +71,8 @@ void XuLyMenu(int Chon, int a[][MAX], int n) {
 		break;
 		
 	case 3:
+		XuatDuongCheoPhu(a, n);
+		break;
 		
 	case 4:
 		

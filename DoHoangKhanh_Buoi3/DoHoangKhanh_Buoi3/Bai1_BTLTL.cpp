@@ -113,6 +113,94 @@ void PhanTuCucDai(int a[][MAX], int n, int m) {
 	printf("\n");
 }
 
+void PhanTuHoangHau(int a[][MAX], int n, int m) {
+	printf("Cac phan tu hoang hau:\n");
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			int isHoangHau = 1;
+			for (int k = 0; k < m; k++) {
+				if (a[i][k] >= a[i][j]) {
+					continue;
+				}
+				isHoangHau = 0;
+				break;
+			}
+			for (int k = 0; k < n; k++) {
+				if (a[k][j] >= a[i][j]) {
+					continue;
+				}
+				isHoangHau = 0;
+				break;
+			}
+			if (isHoangHau) {
+				printf("%d ", a[i][j]);
+			}
+		}
+	}
+	printf("\n");
+}
+
+void DiemYenNgua(int a[][MAX], int n, int m) {
+	printf("Cac phan tu diem yen ngua:\n");
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			int minRow = 1, maxCol = 1;
+			for (int k = 0; k < m; k++) {
+				if (a[i][k] < a[i][j]) {
+					minRow = 0;
+					break;
+				}
+			}
+			for (int k = 0; k < n; k++) {
+				if (a[k][j] > a[i][j]) {
+					maxCol = 0;
+					break;
+				}
+			}
+			if (minRow && maxCol) {
+				printf("%d ", a[i][j]);
+			}
+		}
+	}
+	printf("\n");
+}
+
+void DongChiChuaSoChan(int a[][MAX], int n, int m) {
+	printf("Cac dong chi chua so chan:\n");
+	for (int i = 0; i < n; i++) {
+		int hasEven = 0;
+		for (int j = 0; j < m; j++) {
+			if (a[i][j] % 2 == 0) {
+				hasEven = 1;
+				break;
+			}
+		}
+		if (hasEven) {
+			for (int j = 0; j < m; j++) {
+				printf("%d ", a[i][j]);
+			}
+			printf("\n");
+		}
+	}
+}
+
+void SapXepDongTangDan(int a[][MAX], int n, int m) {
+	printf("Sap xep cac dong tang dan:\n");
+	for (int i = 0; i < n; i++) {
+		// Sắp xếp dòng i theo thứ tự tăng dần
+		for (int j = 0; j < m - 1; j++) {
+			for (int k = j + 1; k < m; k++) {
+				if (a[i][j] > a[i][k]) {
+					int temp = a[i][j];
+					a[i][j] = a[i][k];
+					a[i][k] = temp;
+				}
+			}
+		}
+	}
+	InMang(a, n, m);
+}
+
 void XuLyMenu(int Chon, int a[][MAX], int n, int m) {
 	switch (Chon) {
 	case 1:
@@ -133,16 +221,16 @@ void XuLyMenu(int Chon, int a[][MAX], int n, int m) {
 		PhanTuCucDai(a, n, m);
 		break;
 	case 6:
-		// Xử lý các phần tử hoàng hậu
+		PhanTuHoangHau(a, n, m);
 		break;
 	case 7:
-		// Xử lý các phần tử là điểm yên ngựa
+		DiemYenNgua(a, n, m);
 		break;
 	case 8:
-		// Xử lý dòng chứa số chẵn
+		DongChiChuaSoChan(a, n, m);
 		break;
 	case 9:
-		// Xử lý sắp xếp các dòng theo thứ tự tăng dần
+		SapXepDongTangDan(a, n, m);
 		break;
 	case 0:
 		printf("Thoat chuong trinh.\n");

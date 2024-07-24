@@ -59,6 +59,17 @@ void XuatDuongCheoPhu(int a[][MAX], int n) {
 		printf("\n");
 	}
 }
+void TimMaxTamGiacTrenCheoChinh(int a[][MAX], int n) {
+	int max = a[0][0];
+	for (int i = 0; i < n; i++) {
+		for (int j = i; j < n; j++) {
+			if (a[i][j] > max) {
+				max = a[i][j];
+			}
+		}
+	}
+	printf("Phan tu lon nhat thuoc tam giac tren cua duong cheo chinh: %d\n", max);
+}
 void XuLyMenu(int Chon, int a[][MAX], int n) {
 	switch (Chon) {
 	case 1:
@@ -75,7 +86,8 @@ void XuLyMenu(int Chon, int a[][MAX], int n) {
 		break;
 		
 	case 4:
-		
+		TimMaxTamGiacTrenCheoChinh(a, n);
+		break;
 	case 5:
 		
 	case 6:

@@ -36,7 +36,13 @@ void InMang(int a[][MAX], int n) {
 		printf("\n");
 	}
 }
-
+void XuatDuongCheoChinh(int a[][MAX], int n) {
+	printf("Cac phan tu tren duong cheo chinh:\n");
+	for (int i = 0; i < n; i++) {
+		printf("%d ", a[i][i]);
+	}
+	printf("\n");
+}
 
 
 void XuLyMenu(int Chon, int a[][MAX], int n) {
@@ -47,6 +53,8 @@ void XuLyMenu(int Chon, int a[][MAX], int n) {
 		InMang(a, n);
 		break;
 	case 2:
+		XuatDuongCheoChinh(a, n);
+		break;
 		
 	case 3:
 		

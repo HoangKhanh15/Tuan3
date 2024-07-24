@@ -18,7 +18,7 @@ int Menu() {
 	printf("9. Sap xep cac dong tang dan\n");
 	printf("0. Thoat\n");
 	printf("Nhap lua chon cua ban: ");
-	scanf_s("%d", &Chon); // Dùng scanf để đơn giản hơn
+	scanf("%d", &Chon);
 	return Chon;
 }
 
@@ -36,11 +36,82 @@ void InMang(int a[][MAX], int n, int m) {
 		for (int j = 0; j < m; j++) {
 			printf("%d ", a[i][j]);
 		}
-		printf("\n\n");
+		printf("\n");
 	}
 }
 
-// Các hàm xử lý khác sẽ được thêm vào đây
+void TongCuaTungDong(int a[][MAX], int n, int m) {
+	printf("Tong cua tung dong:\n");
+	for (int i = 0; i < n; i++) {
+		int tong = 0;
+		for (int j = 0; j < m; j++) {
+			tong += a[i][j];
+		}
+		printf("Tong dong %d: %d\n", i + 1, tong);
+	}
+}
+
+void PhanTuLonNhatTungCot(int a[][MAX], int n, int m) {
+	printf("Phan tu lon nhat cua tung cot:\n");
+	for (int j = 0; j < m; j++) {
+		int max = a[0][j];
+		for (int i = 1; i < n; i++) {
+			if (a[i][j] > max) {
+				max = a[i][j];
+			}
+		}
+		printf("Cot %d: %d\n", j + 1, max);
+	}
+}
+
+void DuongBien(int a[][MAX], int n, int m) {
+	printf("Cac phan tu thuoc duong bien:\n");
+
+	// Đường biên trên
+	for (int j = 0; j < m; j++) {
+		printf("%d ", a[0][j]);
+	}
+
+	// Đường biên phải
+	for (int i = 1; i < n; i++) {
+		printf("%d ", a[i][m - 1]);
+	}
+
+	// Đường biên dưới
+	if (n > 1) {
+		for (int j = m - 2; j >= 0; j--) {
+			printf("%d ", a[n - 1][j]);
+		}
+	}
+
+	// Đường biên trái
+	if (m > 1) {
+		for (int i = n - 2; i > 0; i--) {
+			printf("%d ", a[i][0]);
+		}
+	}
+	printf("\n");
+}
+
+void PhanTuCucDai(int a[][MAX], int n, int m) {
+	int max = a[0][0];
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (a[i][j] > max) {
+				max = a[i][j];
+			}
+		}
+	}
+	printf("Cac phan tu cuc dai:\n");
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (a[i][j] == max) {
+				printf("%d ", a[i][j]);
+			}
+		}
+	}
+	printf("\n");
+}
 
 void XuLyMenu(int Chon, int a[][MAX], int n, int m) {
 	switch (Chon) {
@@ -50,16 +121,16 @@ void XuLyMenu(int Chon, int a[][MAX], int n, int m) {
 		InMang(a, n, m);
 		break;
 	case 2:
-		// Xử lý tổng của từng dòng
+		TongCuaTungDong(a, n, m);
 		break;
 	case 3:
-		// Xử lý phần tử lớn nhất của từng cột
+		PhanTuLonNhatTungCot(a, n, m);
 		break;
 	case 4:
-		// Xử lý các phần tử thuộc các đường biên
+		DuongBien(a, n, m);
 		break;
 	case 5:
-		// Xử lý các phần tử cực đại
+		PhanTuCucDai(a, n, m);
 		break;
 	case 6:
 		// Xử lý các phần tử hoàng hậu
@@ -87,9 +158,9 @@ int main() {
 	int a[MAX][MAX];
 
 	printf("Nhap kich thuoc dong: ");
-	scanf_s("%d", &n);
+	scanf("%d", &n);
 	printf("Nhap kich thuoc cot: ");
-	scanf_s("%d", &m);
+	scanf("%d", &m);
 
 	while (1) { // Vòng lặp menu
 		Chon = Menu();

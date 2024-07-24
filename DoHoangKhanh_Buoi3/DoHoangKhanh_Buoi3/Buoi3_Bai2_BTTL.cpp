@@ -42,7 +42,7 @@ void InMang(int a[][MAX], int n) {
 void XuLyMenu(int Chon, int a[][MAX], int n) {
 	switch (Chon) {
 	case 1:
-		printf("-------Mang 2 chieu random----------\n");
+		printf("-------Mang 2 chieu random----------\n\n");
 		TaoMang2CNgauNhien(a, n);
 		InMang(a, n);
 		break;
